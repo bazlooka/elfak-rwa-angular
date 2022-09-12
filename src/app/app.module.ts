@@ -11,6 +11,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 
+import { SharedModule } from './shared/shared.module';
+import { AdminModule } from './admin/admin.module';
+import { EventsModule } from './events/events.module';
+import { LocationsModule } from './locations/locations.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +29,10 @@ import { StoreModule } from '@ngrx/store';
     }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    SharedModule,
+    AdminModule,
+    EventsModule,
+    LocationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
