@@ -13,8 +13,10 @@ import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
-import { EventsModule } from './events/events.module';
 import { LocationsModule } from './locations/locations.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth/interceptors/token.interceptor';
+import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,10 +33,12 @@ import { LocationsModule } from './locations/locations.module';
     StoreRouterConnectingModule.forRoot(),
     SharedModule,
     AdminModule,
-    EventsModule,
     LocationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
