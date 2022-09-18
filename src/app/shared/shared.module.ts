@@ -9,7 +9,13 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [PageNotFoundComponent, HeaderComponent, FooterComponent],
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    RouterModule,
+    MatButtonModule,
+  ],
   exports: [PageNotFoundComponent, HeaderComponent, FooterComponent],
 })
 export class SharedModule {}

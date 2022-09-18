@@ -8,6 +8,8 @@ import { Role } from './auth/enums/role.enum';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 import { LoginPageComponent } from './auth/pages/login-page/login-page.component';
+import { NotLoggedInGuard } from './auth/guards/not-logged-in.guard';
+import { ProfilePageComponent } from './profile/pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -36,7 +38,17 @@ const routes: Routes = [
     data: { role: Role.Editor },
     component: NewLocationComponent,
   },
-  { path: 'login', title: 'Login page', component: LoginPageComponent },
+  {
+    path: 'login',
+    title: 'Login page',
+    canActivate: [NotLoggedInGuard],
+    component: LoginPageComponent,
+  },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    component: ProfilePageComponent,
+  },
   { path: '', redirectTo: '/locations', pathMatch: 'full' },
   { path: '**', title: 'Page not found', component: PageNotFoundComponent },
 ];

@@ -6,21 +6,29 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { AppState } from 'src/app/app.state';
+import { Store } from '@ngrx/store';
+import { User } from '../models/user.interface';
+import { selectUser } from '../store/auth.selectors';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private readonly authService: AuthService) {}
+  currentUser: User | null = null;
+
+  constructor(private readonly store: Store<AppState>) {
+    store.select(selectUser).subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const currentUser = this.authService.currentUser;
-    if (currentUser && currentUser.accessToken) {
+    if (this.currentUser && this.currentUser.accessToken) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.accessToken}`,
+          Authorization: `Bearer ${this.currentUser.accessToken}`,
         },
       });
     }
