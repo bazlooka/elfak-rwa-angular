@@ -19,9 +19,12 @@ import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
 import { AppState } from './app.state';
 import { authReducer } from './auth/store/auth.reducer';
-import { AuthEffects } from './auth/store/auth.effectd';
+import { AuthEffects } from './auth/store/auth.effects';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
+import { ToastrModule } from 'ngx-toastr';
+import { locationsReducer } from './locations/store/locations.reducer';
+import { LocationEffects } from './locations/store/locations.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,13 +32,20 @@ import { ProfileModule } from './profile/profile.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot<AppState>({ auth: authReducer }),
+    StoreModule.forRoot<AppState>({
+      auth: authReducer,
+      locations: locationsReducer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, LocationEffects]),
     StoreRouterConnectingModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center',
+      timeOut: 2000,
+    }),
     SharedModule,
     AdminModule,
     LocationsModule,

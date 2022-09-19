@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { tap } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.interface';
 import { Store } from '@ngrx/store';
 import * as AuthActions from '../store/auth.actions';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RegisterUserDto } from '../models/user.register.dto';
+import { ToastrService } from 'ngx-toastr';
 
 export const RETURN_QUERY = 'returnUrl';
 
@@ -18,7 +20,8 @@ export class AuthService {
     private readonly httpClient: HttpClient,
     private readonly store: Store<AppState>,
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly toastr: ToastrService
   ) {
     const savedUserString = localStorage.getItem('user');
 
@@ -32,16 +35,33 @@ export class AuthService {
     return this.httpClient
       .post<User>(`${environment.apiUrl}/auth/login`, { username, password })
       .pipe(
-        map((user) => {
-          localStorage.setItem('user', JSON.stringify(user));
+        tap((user) => {
+          this.saveUser(user);
+          this.toastr.success('Login successful');
           const returnTo = this.route.snapshot.queryParamMap.get(RETURN_QUERY);
           this.router.navigateByUrl(returnTo || '/locations');
-          return user;
         })
       );
   }
 
   public logout() {
     localStorage.removeItem('user');
+    this.router.navigateByUrl('/locations');
+  }
+
+  public register(newUser: RegisterUserDto) {
+    return this.httpClient
+      .post<User>(`${environment.apiUrl}/users/register`, newUser)
+      .pipe(
+        tap((user) => {
+          this.saveUser(user);
+          this.toastr.success('Registration successful');
+          this.router.navigateByUrl('/locations');
+        })
+      );
+  }
+
+  private saveUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 }

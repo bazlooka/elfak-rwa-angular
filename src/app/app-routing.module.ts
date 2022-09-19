@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-fo
 import { LoginPageComponent } from './auth/pages/login-page/login-page.component';
 import { NotLoggedInGuard } from './auth/guards/not-logged-in.guard';
 import { ProfilePageComponent } from './profile/pages/profile-page/profile-page.component';
+import { RegisterPageComponent } from './auth/pages/register-page/register-page.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,12 @@ const routes: Routes = [
     title: 'Login page',
     canActivate: [NotLoggedInGuard],
     component: LoginPageComponent,
+  },
+  {
+    path: 'register',
+    title: 'Registration page',
+    canActivate: [NotLoggedInGuard],
+    component: RegisterPageComponent,
   },
   {
     path: 'profile',

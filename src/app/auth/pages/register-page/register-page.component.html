@@ -1,0 +1,49 @@
+<div class="register-form-container">
+  <form class="register-form">
+    <h1>Sign up</h1>
+    <mat-form-field appearance="fill">
+      <mat-label for="login-username">Username</mat-label>
+      <input matInput type="text" id="register-username" #username />
+    </mat-form-field>
+    <div class="name">
+      <mat-form-field appearance="fill">
+        <mat-label for="login-username">First name</mat-label>
+        <input matInput type="text" id="register-first-name" #firstName />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label for="login-username">Last name</mat-label>
+        <input matInput type="text" id="login-username" #lastName />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="login-password">Password</mat-label>
+      <input matInput type="password" id="login-password" #password />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label for="login-password-repeate">Repeat password</mat-label>
+      <input
+        matInput
+        type="password"
+        id="login-password-repeated"
+        #passwordRepeated
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="
+        register(
+          username.value,
+          firstName.value,
+          lastName.value,
+          password.value,
+          passwordRepeated.value
+        )
+      "
+    >
+      Register
+    </button>
+  </form>
+</div>

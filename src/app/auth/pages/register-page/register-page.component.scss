@@ -2,20 +2,22 @@ h1,
 h3 {
   text-align: center;
 }
-.login-form-container {
+.register-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 10rem;
 }
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
   width: 20rem;
-}
-.sign-up {
-  position: absolute;
-  margin: 0;
-  width: 100%;
-  bottom: 1rem;
+  .name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    * {
+      width: 49%;
+    }
+  }
 }

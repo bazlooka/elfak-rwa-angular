@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <span class="logo">TouristGuide</span>
   <button mat-button routerLink="/locations">Locations</button>
-  <div *ngIf="user$ | async">
+  <div *ngIf="showDashboard">
     <button mat-button routerLink="/dashboard">Dashboard</button>
   </div>
   <span class="spacer"></span>

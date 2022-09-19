@@ -47,11 +47,5 @@ export class LocationMapComponent implements OnInit {
 
   constructor(private readonly locationsService: LocationsService) {}
 
-  ngOnInit(): void {
-    //this.locations$ =
-
-    this.locationsService.getAll().subscribe((locatins) => {
-      console.log(locatins);
-    });
-  }
+  ngOnInit(): void {}
 }
