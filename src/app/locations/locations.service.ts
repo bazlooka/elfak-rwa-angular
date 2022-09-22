@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Homepage } from './models/homepage.interface';
+import { HomepageDto } from './models/homepage.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class LocationsService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getHomepage() {
-    return this.httpClient.get<Homepage>(
+    return this.httpClient.get<HomepageDto>(
       environment.apiUrl + '/locations/homepage'
     );
   }

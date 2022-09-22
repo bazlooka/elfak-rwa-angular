@@ -1,8 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { tileLayer, latLng, circle, polygon } from 'leaflet';
-import { Observable, of } from 'rxjs';
-import { LocationsService } from '../../locations.service';
-import { Location } from '../../models/location.interface';
+import { Component, OnInit, NgZone } from '@angular/core';
+
+import { AppState } from 'src/app/app.state';
+
+import { Store } from '@ngrx/store';
+import { selectMap, selectPins } from '../../store/locations.selectors';
+import { Observable } from 'rxjs';
+import { Map } from '../../models/map.interface';
+import { icon, Layer, marker, tileLayer } from 'leaflet';
+import { Router } from '@angular/router';
+import { LocationPin } from '../../models/location-pin.interface';
+import { environment } from 'src/environments/environment';
+
+const PIN_SIZE = 38;
 
 @Component({
   selector: 'app-location-map',
@@ -10,42 +19,43 @@ import { Location } from '../../models/location.interface';
   styleUrls: ['./location-map.component.scss'],
 })
 export class LocationMapComponent implements OnInit {
-  options = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: '...',
-      }),
-    ],
-    zoom: 5,
-    center: latLng(46.879966, -121.726909),
-  };
+  map$: Observable<Map> | null = null;
 
-  layersControl = {
-    baseLayers: {
-      'Open Street Map': tileLayer(
-        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { maxZoom: 18, attribution: '...' }
-      ),
-      'Open Cycle Map': tileLayer(
-        'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
-        { maxZoom: 18, attribution: '...' }
-      ),
-    },
-    overlays: {
-      'Big Circle': circle([46.95, -122], { radius: 5000 }),
-      'Big Square': polygon([
-        [46.8, -121.55],
-        [46.9, -121.55],
-        [46.9, -121.7],
-        [46.8, -121.7],
-      ]),
-    },
-  };
+  baseLayer = tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+  });
 
-  locations$: Observable<Location[]> = of([]);
+  pinLayers: Layer[] | null = null;
 
-  constructor(private readonly locationsService: LocationsService) {}
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly router: Router,
+    private readonly ngZone: NgZone
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.map$ = this.store.select(selectMap);
+    this.store.select(selectPins).subscribe((pins) => {
+      this.createMarkers(pins);
+    });
+  }
+
+  createMarkers(pins: LocationPin[]) {
+    this.pinLayers = pins.map((pin) => {
+      return marker(pin.position, {
+        icon: icon({
+          iconSize: [PIN_SIZE, PIN_SIZE],
+          iconUrl: environment.mediaUrl + pin.markerPath,
+        }),
+        title: pin.name,
+        riseOnHover: true,
+      })
+        .bindTooltip(`${pin.name} (${pin.typeName})`)
+        .on('click', () => {
+          this.ngZone.run(() => {
+            this.router.navigateByUrl(`/location/${pin.id}`);
+          });
+        });
+    });
+  }
 }

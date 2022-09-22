@@ -1,18 +1,37 @@
 import { createReducer, on } from '@ngrx/store';
 import { Homepage } from '../models/homepage.interface';
 import * as LocationsActions from './locations.actions';
+import { LatLng } from 'leaflet';
 
 export interface LocationsState {
-  homepage: Homepage | null;
+  homepage: Homepage;
 }
 
 export const initialState: LocationsState = {
-  homepage: null,
+  homepage: {
+    map: {
+      isShown: false,
+      center: new LatLng(0, 0),
+      zoom: 0,
+    },
+    locationPins: [],
+    trendingLocations: [],
+  },
 };
 
 export const locationsReducer = createReducer(
   initialState,
-  on(LocationsActions.loadHomepageSuccess, (state, { homepage }) => {
-    return { ...state, homepage };
+  on(LocationsActions.loadHomepageSuccess, (oldState, { homepage }) => {
+    return {
+      ...oldState,
+      homepage: {
+        ...homepage,
+        map: {
+          ...oldState.homepage.map,
+          ...homepage.map,
+          isShown: true,
+        },
+      },
+    };
   })
 );

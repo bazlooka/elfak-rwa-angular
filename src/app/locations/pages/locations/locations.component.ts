@@ -14,9 +14,5 @@ export class LocationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(LocationsActions.loadHomepage());
-
-    this.store.select(selectHomepage).subscribe((homepage) => {
-      console.log(homepage);
-    });
   }
 }

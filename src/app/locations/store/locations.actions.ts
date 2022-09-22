@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Homepage } from '../models/homepage.interface';
+import { HomepageDto } from '../models/homepage.dto';
 
 export const loadHomepage = createAction('[API] Load hompage locations');
 
 export const loadHomepageSuccess = createAction(
   '[API] Load homepage locations success',
-  props<{ homepage: Homepage }>()
+  props<{ homepage: HomepageDto }>()
 );

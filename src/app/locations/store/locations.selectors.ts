@@ -10,3 +10,13 @@ export const selectHomepage = createSelector(
   selectLocationsFeature,
   (locations) => locations.homepage
 );
+
+export const selectMap = createSelector(
+  selectHomepage,
+  (homepage) => homepage.map
+);
+
+export const selectPins = createSelector(
+  selectHomepage,
+  (homepage) => homepage.locationPins
+);

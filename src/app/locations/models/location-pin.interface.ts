@@ -1,7 +1,6 @@
 export interface LocationPin {
   id: number;
-  latitude: number;
-  longitude: number;
+  position: [number, number];
   name: string;
   markerPath: string;
   typeName: string;

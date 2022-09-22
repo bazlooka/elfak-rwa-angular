@@ -1,6 +1,15 @@
-<div
-  style="height: 76vh"
-  leaflet
-  [leafletOptions]="options"
-  [leafletLayersControl]="layersControl"
-></div>
+<div class="map-container">
+  <div *ngIf="map$ | async as map">
+    <div *ngIf="map.isShown && map.center && map.zoom && pinLayers">
+      <div
+        class="locations-map"
+        leaflet
+        [leafletZoom]="map.zoom"
+        [leafletCenter]="map.center"
+        [leafletLayers]="pinLayers"
+      >
+        <div [leafletLayer]="baseLayer"></div>
+      </div>
+    </div>
+  </div>
+</div>
