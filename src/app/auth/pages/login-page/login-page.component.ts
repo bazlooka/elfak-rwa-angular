@@ -3,7 +3,7 @@ import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/auth.actions';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-page',
@@ -14,14 +14,14 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private readonly store: Store<AppState>,
     private readonly router: Router,
-    private readonly toastr: ToastrService
+    private readonly snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
 
   login(username: string, password: string): void {
     if (!username || !password) {
-      this.toastr.error('Please fill in all fields');
+      this.snackbar.open('Please fill in all fields');
       return;
     }
     this.store.dispatch(login({ username, password }));

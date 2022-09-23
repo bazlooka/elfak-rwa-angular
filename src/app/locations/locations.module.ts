@@ -7,6 +7,9 @@ import { NewLocationComponent } from './pages/new-location/new-location.componen
 import { LocationMapComponent } from './components/location-map/location-map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TrendingLocationsComponent } from './components/trending-locations/trending-locations.component';
+import { TrendingLocationCardComponent } from './components/trending-location-card/trending-location-card.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,14 @@ import { TrendingLocationsComponent } from './components/trending-locations/tren
     NewLocationComponent,
     LocationMapComponent,
     TrendingLocationsComponent,
+    TrendingLocationCardComponent,
   ],
-  imports: [CommonModule, LeafletModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    LeafletModule,
+    HttpClientModule,
+    MatCardModule,
+    MatButtonModule,
+  ],
 })
 export class LocationsModule {}

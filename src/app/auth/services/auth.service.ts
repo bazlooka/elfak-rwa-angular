@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import * as AuthActions from '../store/auth.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterUserDto } from '../models/user.register.dto';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const RETURN_QUERY = 'returnUrl';
 
@@ -21,7 +21,7 @@ export class AuthService {
     private readonly store: Store<AppState>,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly toastr: ToastrService
+    private readonly snackbar: MatSnackBar
   ) {
     const savedUserString = localStorage.getItem('user');
 
@@ -37,7 +37,7 @@ export class AuthService {
       .pipe(
         tap((user) => {
           this.saveUser(user);
-          this.toastr.success('Login successful');
+          this.snackbar.open('Login successful');
           const returnTo = this.route.snapshot.queryParamMap.get(RETURN_QUERY);
           this.router.navigateByUrl(returnTo || '/locations');
         })
@@ -55,7 +55,7 @@ export class AuthService {
       .pipe(
         tap((user) => {
           this.saveUser(user);
-          this.toastr.success('Registration successful');
+          this.snackbar.open('Registration successful');
           this.router.navigateByUrl('/locations');
         })
       );

@@ -10,6 +10,10 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
+import {
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 
 import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
@@ -22,7 +26,6 @@ import { authReducer } from './auth/store/auth.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
-import { ToastrModule } from 'ngx-toastr';
 import { locationsReducer } from './locations/store/locations.reducer';
 import { LocationEffects } from './locations/store/locations.effects';
 
@@ -42,10 +45,7 @@ import { LocationEffects } from './locations/store/locations.effects';
     }),
     EffectsModule.forRoot([AuthEffects, LocationEffects]),
     StoreRouterConnectingModule.forRoot(),
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-center',
-      timeOut: 2000,
-    }),
+    MatSnackBarModule,
     SharedModule,
     AdminModule,
     LocationsModule,
@@ -55,6 +55,7 @@ import { LocationEffects } from './locations/store/locations.effects';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500 } },
   ],
   bootstrap: [AppComponent],
 })

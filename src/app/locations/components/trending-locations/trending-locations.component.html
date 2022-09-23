@@ -1,1 +1,8 @@
 <h1>Trending locations:</h1>
+<div class="trending-locations">
+  <div *ngFor="let location of trendingLocations$ | async">
+    <app-trending-location-card
+      [location]="location"
+    ></app-trending-location-card>
+  </div>
+</div>

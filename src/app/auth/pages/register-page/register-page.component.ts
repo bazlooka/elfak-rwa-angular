@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
 import * as AuthActions from '../../store/auth.actions';
 import { RegisterUserDto } from '../../models/user.register.dto';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-page',
@@ -12,7 +12,7 @@ import { RegisterUserDto } from '../../models/user.register.dto';
 })
 export class RegisterPageComponent implements OnInit {
   constructor(
-    private readonly toastr: ToastrService,
+    private readonly snackbar: MatSnackBar,
     private readonly store: Store<AppState>
   ) {}
 
@@ -34,12 +34,12 @@ export class RegisterPageComponent implements OnInit {
       !password ||
       !passwordRepeated
     ) {
-      this.toastr.error('Please fill in all fields');
+      this.snackbar.open('Please fill in all fields');
       return;
     }
 
     if (password !== passwordRepeated) {
-      this.toastr.error('Passwords do not match');
+      this.snackbar.open('Passwords do not match');
       return;
     }
 

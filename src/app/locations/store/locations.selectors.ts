@@ -20,3 +20,8 @@ export const selectPins = createSelector(
   selectHomepage,
   (homepage) => homepage.locationPins
 );
+
+export const selectTrendingLocations = createSelector(
+  selectHomepage,
+  (locations) => locations.trendingLocations
+);

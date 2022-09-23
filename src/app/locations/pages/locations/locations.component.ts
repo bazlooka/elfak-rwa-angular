@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
 import * as LocationsActions from '../../store/locations.actions';
-import { selectHomepage } from '../../store/locations.selectors';
 
 @Component({
   selector: 'app-locations',
