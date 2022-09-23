@@ -3,7 +3,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { AppState } from 'src/app/app.state';
 
 import { Store } from '@ngrx/store';
-import { selectMap, selectPins } from '../../store/locations.selectors';
+import { selectMap, selectPins } from '../../store/location-map.selectors';
 import { Observable } from 'rxjs';
 import { Map } from '../../models/map.interface';
 import { icon, Layer, marker, tileLayer } from 'leaflet';

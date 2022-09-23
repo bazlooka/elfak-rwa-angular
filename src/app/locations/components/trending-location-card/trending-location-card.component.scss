@@ -2,4 +2,36 @@
   width: 90%;
   max-width: 1200px;
   margin: 2rem auto;
+  background-color: rgb(250, 250, 250);
+}
+.location-card-body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  img {
+    width: 28rem;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  p {
+    margin-left: 1rem;
+  }
+}
+mat-card-subtitle {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+mat-card-actions {
+  margin: 0;
+  padding: 0;
+}
+mat-card-content {
+  margin: 0;
 }

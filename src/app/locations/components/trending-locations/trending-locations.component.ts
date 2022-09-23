@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
-import { selectTrendingLocations } from '../../store/locations.selectors';
-import { Location } from '../../models/location.interface';
+import { TrendingLocation } from '../../models/trending-location.interface';
+import { selectTrendingLocations } from '../../store/trending-locations.selectors';
 
 @Component({
   selector: 'app-trending-locations',
@@ -12,7 +12,7 @@ import { Location } from '../../models/location.interface';
   styleUrls: ['./trending-locations.component.scss'],
 })
 export class TrendingLocationsComponent implements OnInit {
-  trendingLocations$: Observable<Location[]> | null = null;
+  trendingLocations$: Observable<TrendingLocation[]> | null = null;
 
   constructor(private readonly store: Store<AppState>) {}
 

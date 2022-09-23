@@ -1,2 +1,5 @@
 <app-location-map></app-location-map>
 <app-trending-locations></app-trending-locations>
+<app-new-location-button
+  *ngIf="showNewLocationBtn$ | async"
+></app-new-location-button>

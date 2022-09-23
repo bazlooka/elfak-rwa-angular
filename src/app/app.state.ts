@@ -1,7 +1,9 @@
 import { AuthState } from './auth/store/auth.reducer';
-import { LocationsState } from './locations/store/locations.reducer';
+import { LocationMapState } from './locations/store/location-map.reducer';
+import { TrendingLocationsState } from './locations/store/trending-locations.reducer';
 
 export interface AppState {
   auth: AuthState;
-  locations: LocationsState;
+  locationMap: LocationMapState;
+  trendingLocations: TrendingLocationsState;
 }

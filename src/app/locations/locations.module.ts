@@ -10,6 +10,9 @@ import { TrendingLocationsComponent } from './components/trending-locations/tren
 import { TrendingLocationCardComponent } from './components/trending-location-card/trending-location-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { NewLocationButtonComponent } from './components/new-location-button/new-location-button.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     LocationMapComponent,
     TrendingLocationsComponent,
     TrendingLocationCardComponent,
+    NewLocationButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
   ],
 })
 export class LocationsModule {}

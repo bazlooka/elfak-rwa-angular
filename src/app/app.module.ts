@@ -26,8 +26,9 @@ import { authReducer } from './auth/store/auth.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
-import { locationsReducer } from './locations/store/locations.reducer';
+import { locationMapReducer } from './locations/store/location-map.reducer';
 import { LocationEffects } from './locations/store/locations.effects';
+import { trendingLocationsReducer } from './locations/store/trending-locations.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +38,8 @@ import { LocationEffects } from './locations/store/locations.effects';
     BrowserAnimationsModule,
     StoreModule.forRoot<AppState>({
       auth: authReducer,
-      locations: locationsReducer,
+      locationMap: locationMapReducer,
+      trendingLocations: trendingLocationsReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

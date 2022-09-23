@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Location } from '../../models/location.interface';
+import { TrendingLocation } from '../../models/trending-location.interface';
 
 @Component({
   selector: 'app-trending-location-card',
@@ -8,16 +9,19 @@ import { Location } from '../../models/location.interface';
   styleUrls: ['./trending-location-card.component.scss'],
 })
 export class TrendingLocationCardComponent implements OnInit {
-  @Input() location: Location | null = null;
+  @Input() location: TrendingLocation | null = null;
 
-  constructor() {}
+  get imageUrl() {
+    return environment.mediaUrl + this.location?.imagePath;
+  }
+
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {}
 
-  get imageUrl() {
-    if (!this.location || this.location.imagePaths.length === 0) {
-      return null;
+  openLocationDetails(): void {
+    if (this.location) {
+      this.router.navigateByUrl(`/location/${this.location.id}`);
     }
-    return environment.mediaUrl + this.location.imagePaths[0];
   }
 }

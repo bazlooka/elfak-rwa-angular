@@ -1,6 +1,6 @@
 import { LatLng } from 'leaflet';
 import { LocationPin } from './location-pin.interface';
-import { Location } from './location.interface';
+import { TrendingLocation } from './trending-location.interface';
 
 export interface HomepageDto {
   map: {
@@ -8,5 +8,5 @@ export interface HomepageDto {
     zoom: number;
   };
   locationPins: LocationPin[];
-  trendingLocations: Location[];
+  trendingLocations: TrendingLocation[];
 }
