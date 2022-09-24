@@ -9,6 +9,12 @@
         "label": "off"
       }
     ],
-    "axe/structure": "off"
+    "axe/structure": "off",
+    "axe/aria": [
+      "default",
+      {
+        "aria-allowed-attr": "off"
+      }
+    ]
   }
 }

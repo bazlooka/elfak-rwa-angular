@@ -11,17 +11,12 @@ import { LoginPageComponent } from './auth/pages/login-page/login-page.component
 import { NotLoggedInGuard } from './auth/guards/not-logged-in.guard';
 import { ProfilePageComponent } from './profile/pages/profile-page/profile-page.component';
 import { RegisterPageComponent } from './auth/pages/register-page/register-page.component';
+import { UsersPageComponent } from './admin/pages/users-page/users-page.component';
+import { LocationAdminPageComponent } from './admin/pages/location-admin-page/location-admin-page.component';
+import { LocationTypeAdminPageComponent } from './admin/pages/location-type-admin-page/location-type-admin-page.component';
+import { SettingsPageComponent } from './admin/pages/settings-page/settings-page.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    title: 'Admin dashboard',
-    canActivate: [AuthGuard],
-    data: {
-      role: Role.Admin,
-    },
-    component: DashboardComponent,
-  },
   {
     path: 'location/:locationId',
     title: 'Location',
@@ -56,7 +51,23 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: ProfilePageComponent,
   },
-  { path: '', redirectTo: '/locations', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    title: 'Admin dashboard',
+    canActivate: [AuthGuard],
+    data: {
+      role: Role.Admin,
+    },
+    component: DashboardComponent,
+    children: [
+      { path: 'users', component: UsersPageComponent },
+      { path: 'locations', component: LocationAdminPageComponent },
+      { path: 'location-types', component: LocationTypeAdminPageComponent },
+      { path: 'settings', component: SettingsPageComponent },
+      { path: '', redirectTo: 'users', pathMatch: 'prefix' },
+    ],
+  },
+  { path: '', redirectTo: 'locations', pathMatch: 'prefix' },
   { path: '**', title: 'Page not found', component: PageNotFoundComponent },
 ];
 

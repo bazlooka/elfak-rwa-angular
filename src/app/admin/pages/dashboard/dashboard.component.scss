@@ -1,0 +1,21 @@
+.drawer-container {
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+.sidenav {
+  width: 260px;
+  padding: 20px;
+  h2 {
+    margin: 0 auto;
+  }
+  mat-icon {
+    margin-right: 1rem;
+  }
+  .mat-list-item-content {
+    padding-left: 0 !important;
+  }
+}
+.sidenav-content {
+  height: 100%;
+  width: 100%;
+}

@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <h2>Admin dashboard</h2>
+    <mat-nav-list>
+      <mat-list-item (click)="openUsers()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Users"
+          fontIcon="person"
+        ></mat-icon>
+        Users
+      </mat-list-item>
+      <mat-list-item (click)="openLocations()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Locations"
+          fontIcon="map"
+        ></mat-icon>
+        Locations
+      </mat-list-item>
+      <mat-list-item (click)="openLocationTypes()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Location types"
+          fontIcon="location_on"
+        ></mat-icon>
+        Location types
+      </mat-list-item>
+      <mat-list-item (click)="openSettings()">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Settings"
+          fontIcon="settings"
+        ></mat-icon>
+        Settings
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
