@@ -19,5 +19,23 @@ export const adminLocationTypesReducer = createReducer(
   on(
     AdminLocationTypesActions.loadAdminLocationTypesSuccess,
     (state, { locationTypes }) => adapter.setAll(locationTypes, state)
+  ),
+  on(
+    AdminLocationTypesActions.createLocationTypeSuccess,
+    (state, { locationType }) => adapter.addOne(locationType, state)
+  ),
+  on(
+    AdminLocationTypesActions.editLocationTypeSuccess,
+    (state, { locationType }) =>
+      adapter.updateOne(
+        {
+          id: locationType.id,
+          changes: {
+            name: locationType.name,
+            markerPath: locationType.markerPath,
+          },
+        },
+        state
+      )
   )
 );

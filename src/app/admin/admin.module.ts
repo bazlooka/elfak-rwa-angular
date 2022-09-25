@@ -12,7 +12,7 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CreateLocationTypeDialogComponent } from './components/create-location-type-dialog/create-location-type-dialog.component';
+import { LocationTypeDialogComponent } from './components/location-type-dialog/location-type-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
     LocationAdminPageComponent,
     LocationTypeAdminPageComponent,
     SettingsPageComponent,
-    CreateLocationTypeDialogComponent,
+    LocationTypeDialogComponent,
   ],
   imports: [
     CommonModule,

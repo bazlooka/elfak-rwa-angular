@@ -2,6 +2,7 @@
   <table
     mat-table
     [dataSource]="locationTypes"
+    fixedLayout="true"
     class="mat-elevation-z1 location-types-table"
   >
     <ng-container matColumnDef="markerPath">
@@ -22,6 +23,20 @@
     <ng-container matColumnDef="locationCount">
       <th mat-header-cell *matHeaderCellDef>Locations</th>
       <td mat-cell *matCellDef="let locType">{{ locType.locationCount }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let locType">
+        <button
+          class="edit-location-type-button"
+          type="button"
+          mat-button
+          (click)="openEditLocTypeDialog(locType)"
+        >
+          Edit
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

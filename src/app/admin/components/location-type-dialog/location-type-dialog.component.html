@@ -1,8 +1,12 @@
-<h1 mat-dialog-title>New location type</h1>
+<h1 mat-dialog-title>{{ title }}</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput #locationName />
+    <input
+      matInput
+      #locationName
+      value="{{ data?.locationType?.name ?? '' }}"
+    />
   </mat-form-field>
   <button
     type="button"
@@ -23,7 +27,7 @@
     mat-button
     [mat-dialog-close]
     cdkFocusInitial
-    (click)="createLocationType(locationName.value)"
+    (click)="onOkClicked(locationName.value)"
   >
     Ok
   </button>

@@ -38,6 +38,23 @@ export class AdminLocationTypesEffects {
     );
   });
 
+  editLocationType$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AdminLocationTypesActions.editLocationType),
+      mergeMap(({ id, locationData }) => {
+        return this.adminLocationTypesService
+          .editLocationType(id, locationData)
+          .pipe(
+            map((locationType) =>
+              AdminLocationTypesActions.editLocationTypeSuccess({
+                locationType,
+              })
+            )
+          );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private adminLocationTypesService: AdminLocationTypesService

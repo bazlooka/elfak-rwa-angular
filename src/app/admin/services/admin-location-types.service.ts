@@ -1,11 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppState } from 'src/app/app.state';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AdminLocationType } from '../models/admin-location-type.interface.dto';
-import { CreateLocationTypeDto } from '../models/location-type.create.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +11,7 @@ import { CreateLocationTypeDto } from '../models/location-type.create.dto';
 export class AdminLocationTypesService {
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly store: Store<AppState>
+    private readonly snackbar: MatSnackBar
   ) {}
 
   public fetchAllLocationTypes(): Observable<AdminLocationType[]> {
@@ -23,9 +21,28 @@ export class AdminLocationTypesService {
   }
 
   public createLocationType(locationData: FormData) {
-    return this.httpClient.post<AdminLocationType>(
-      `${environment.apiUrl}/locations/types`,
-      locationData
-    );
+    return this.httpClient
+      .post<AdminLocationType>(
+        `${environment.apiUrl}/locations/types`,
+        locationData
+      )
+      .pipe(
+        tap((locationType) => {
+          this.snackbar.open(`${locationType.name} created successfully.`);
+        })
+      );
+  }
+
+  public editLocationType(id: number, locationData: FormData) {
+    return this.httpClient
+      .put<AdminLocationType>(
+        `${environment.apiUrl}/locations/types/${id}`,
+        locationData
+      )
+      .pipe(
+        tap((locationType) => {
+          this.snackbar.open(`${locationType.name} edited successfully.`);
+        })
+      );
   }
 }

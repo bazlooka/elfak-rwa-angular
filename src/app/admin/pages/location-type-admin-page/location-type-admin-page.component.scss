@@ -1,5 +1,5 @@
 .location-types-table {
-  width: 100%;
+  width: 800px;
 
   img {
     width: 38px;
@@ -7,14 +7,19 @@
     margin: 6px;
   }
 }
-.mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
+
+.edit-location-type-button {
+  margin-left: 66%;
 }
 
 .add-location-type-button {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+}
+
+@media screen and (max-width: 1080px) {
+  .location-types-table {
+    width: 100% !important;
+  }
 }

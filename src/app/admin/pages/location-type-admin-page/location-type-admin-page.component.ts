@@ -7,7 +7,8 @@ import { loadAdminLocationTypes } from '../../store/admin-location-types.actions
 import { selectAdminLocationTypes } from '../../store/admin-location-types.selectors';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateLocationTypeDialogComponent } from '../../components/create-location-type-dialog/create-location-type-dialog.component';
+import { LocationTypeDialogComponent } from '../../components/location-type-dialog/location-type-dialog.component';
+import * as AdminLocationTypesActions from '../../store/admin-location-types.actions';
 
 @Component({
   selector: 'app-location-type-admin-page',
@@ -15,7 +16,7 @@ import { CreateLocationTypeDialogComponent } from '../../components/create-locat
   styleUrls: ['./location-type-admin-page.component.scss'],
 })
 export class LocationTypeAdminPageComponent implements OnInit {
-  displayedColumns = ['markerPath', 'name', 'locationCount'];
+  displayedColumns = ['markerPath', 'name', 'locationCount', 'edit'];
 
   locationTypes$: Observable<AdminLocationType[]> | null = null;
 
@@ -34,8 +35,40 @@ export class LocationTypeAdminPageComponent implements OnInit {
   }
 
   openCreateLocationDialg() {
-    this.dialog.open(CreateLocationTypeDialogComponent, {
-      width: '300px',
+    const dialogClosed$ = this.dialog
+      .open(LocationTypeDialogComponent, {
+        width: '300px',
+      })
+      .afterClosed();
+
+    dialogClosed$.subscribe((resultData) => {
+      if (resultData) {
+        this.store.dispatch(
+          AdminLocationTypesActions.createLocationType({
+            locationData: resultData.formData,
+          })
+        );
+      }
+    });
+  }
+
+  openEditLocTypeDialog(locationType: AdminLocationType) {
+    const dialogClosed$ = this.dialog
+      .open(LocationTypeDialogComponent, {
+        width: '300px',
+        data: { locationType },
+      })
+      .afterClosed();
+
+    dialogClosed$.subscribe((resultData) => {
+      if (resultData) {
+        this.store.dispatch(
+          AdminLocationTypesActions.editLocationType({
+            id: resultData.id,
+            locationData: resultData.formData,
+          })
+        );
+      }
     });
   }
 }

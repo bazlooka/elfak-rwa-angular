@@ -31,10 +31,9 @@ import { LocationEffects } from './locations/store/locations.effects';
 import { trendingLocationsReducer } from './locations/store/trending-locations.reducer';
 import { adminLocationTypesReducer } from './admin/store/admin-location-types.reducer';
 import { AdminLocationTypesEffects } from './admin/store/admin-location-types.effects';
-import {
-  MatDialogModule,
-  MAT_DIALOG_DEFAULT_OPTIONS,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { SettingsEffects } from './admin/store/settings.effects';
+import { settingsReducer } from './admin/store/settings.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +46,7 @@ import {
       locationMap: locationMapReducer,
       trendingLocations: trendingLocationsReducer,
       adminLocationTypes: adminLocationTypesReducer,
+      settings: settingsReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -56,6 +56,7 @@ import {
       AuthEffects,
       LocationEffects,
       AdminLocationTypesEffects,
+      SettingsEffects,
     ]),
     StoreRouterConnectingModule.forRoot(),
     MatSnackBarModule,

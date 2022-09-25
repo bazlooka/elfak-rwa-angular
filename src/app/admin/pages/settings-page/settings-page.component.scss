@@ -1,0 +1,32 @@
+.settings-table {
+  width: 800px;
+
+  .mat-column-name {
+    width: 40% !important;
+  }
+
+  .mat-column-value {
+    width: 54% !important;
+  }
+
+  .mat-column-actions {
+    width: 6% !important;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+  }
+
+  .value-setting-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .settings-table {
+    width: 100% !important;
+  }
+}
