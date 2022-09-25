@@ -9,6 +9,13 @@ import { AppRoutingModule } from '../app-routing.module';
 import { LocationAdminPageComponent } from './pages/location-admin-page/location-admin-page.component';
 import { LocationTypeAdminPageComponent } from './pages/location-type-admin-page/location-type-admin-page.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreateLocationTypeDialogComponent } from './components/create-location-type-dialog/create-location-type-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -17,6 +24,7 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
     LocationAdminPageComponent,
     LocationTypeAdminPageComponent,
     SettingsPageComponent,
+    CreateLocationTypeDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +32,12 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
     MatListModule,
     MatIconModule,
     AppRoutingModule,
+    MatTableModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
   ],
 })
 export class AdminModule {}

@@ -29,6 +29,12 @@ import { ProfileModule } from './profile/profile.module';
 import { locationMapReducer } from './locations/store/location-map.reducer';
 import { LocationEffects } from './locations/store/locations.effects';
 import { trendingLocationsReducer } from './locations/store/trending-locations.reducer';
+import { adminLocationTypesReducer } from './admin/store/admin-location-types.reducer';
+import { AdminLocationTypesEffects } from './admin/store/admin-location-types.effects';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,12 +46,17 @@ import { trendingLocationsReducer } from './locations/store/trending-locations.r
       auth: authReducer,
       locationMap: locationMapReducer,
       trendingLocations: trendingLocationsReducer,
+      adminLocationTypes: adminLocationTypesReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([AuthEffects, LocationEffects]),
+    EffectsModule.forRoot([
+      AuthEffects,
+      LocationEffects,
+      AdminLocationTypesEffects,
+    ]),
     StoreRouterConnectingModule.forRoot(),
     MatSnackBarModule,
     SharedModule,
@@ -58,6 +69,7 @@ import { trendingLocationsReducer } from './locations/store/trending-locations.r
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500 } },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
   ],
   bootstrap: [AppComponent],
 })
