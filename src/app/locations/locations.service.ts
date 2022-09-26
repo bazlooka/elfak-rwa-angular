@@ -25,4 +25,11 @@ export class LocationsService {
       environment.apiUrl + '/locations/trending'
     );
   }
+
+  createLocation(locationData: FormData) {
+    return this.httpClient.post<Location>(
+      environment.apiUrl + '/locations',
+      locationData
+    );
+  }
 }

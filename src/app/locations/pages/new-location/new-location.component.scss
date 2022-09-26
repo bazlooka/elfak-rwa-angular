@@ -1,0 +1,26 @@
+.new-location-stepper {
+  margin-top: 1rem !important;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.new-location-form {
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.new-location-map {
+  height: 50vh;
+  margin-top: 2rem;
+}
+.select-images {
+  height: 50vh;
+
+  h3 {
+    margin: 2rem 0 0 0;
+  }
+}
+.select-images-button {
+  width: 100%;
+}

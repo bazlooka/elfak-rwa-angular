@@ -1,7 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-
 import { AppState } from 'src/app/app.state';
-
 import { Store } from '@ngrx/store';
 import { selectMap, selectPins } from '../../store/location-map.selectors';
 import { Observable } from 'rxjs';

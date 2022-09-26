@@ -1,1 +1,113 @@
-<p>new-location works!</p>
+<mat-stepper linear #stepper class="new-location-stepper">
+  <mat-step [stepControl]="formGroup" label="Fill out location details">
+    <form [formGroup]="formGroup" class="new-location-form">
+      <mat-form-field *ngIf="locTypes$ | async as locTypes" appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let locType of locTypes" [value]="locType.id">
+            {{ locType.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="name"
+          required
+          placeholder="Name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="Description..."
+          type="text"
+          matInput
+          formControlName="description"
+          required
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="address"
+          required
+          placeholder="Address"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Website</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="website"
+          required
+          placeholder="Website"
+        />
+      </mat-form-field>
+      <button mat-button matStepperNext>Next</button>
+    </form>
+  </mat-step>
+  <mat-step label="Select postion">
+    <div class="map-container">
+      <div *ngIf="map$ | async as map">
+        <div *ngIf="map.isShown && map.center && map.zoom && pinLayer">
+          <div
+            class="new-location-map"
+            leaflet
+            [leafletZoom]="map.zoom"
+            [leafletCenter]="map.center"
+          >
+            <div [leafletLayer]="baseLayer"></div>
+            <div [leafletLayer]="pinLayer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new-location-form">
+      <button mat-button matStepperNext>Next</button>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+  <mat-step label="Upload images">
+    <div class="new-location-form">
+      <div class="select-images">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="select-images-button"
+          (click)="fileInput.click()"
+        >
+          Select images
+        </button>
+        <input
+          hidden
+          (change)="onFileSelected($event)"
+          #fileInput
+          type="file"
+          multiple
+          accept="image/*"
+        />
+        <div *ngIf="selectedFiles && selectedFiles.length > 0">
+          <h3>Selected images:</h3>
+          <ul *ngFor="let file of selectedFiles">
+            {{
+              file.name
+            }}
+          </ul>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="createLocation()">
+        Create location
+      </button>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { LocationsService } from '../locations.service';
@@ -18,8 +20,26 @@ export class LocationEffects {
     );
   });
 
+  createLocation$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LocationActions.createNewLocation),
+      mergeMap(({ locationData }) => {
+        return this.locationsService.createLocation(locationData).pipe(
+          map((location) => {
+            this.snackbar.open(`${location.name} successfully created!`);
+            this.router.navigateByUrl('/locations');
+            return LocationActions.createNewLocationSuccess({ location });
+          }),
+          catchError(() => of({ type: '' }))
+        );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
-    private locationsService: LocationsService
+    private locationsService: LocationsService,
+    private snackbar: MatSnackBar,
+    private router: Router
   ) {}
 }

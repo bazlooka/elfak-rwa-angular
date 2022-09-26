@@ -13,7 +13,6 @@ export class AdminUsersEffects {
       mergeMap(({ query }) => {
         return this.adminUsersService.fetchUsers(query).pipe(
           map((users) => {
-            console.log(users);
             return AdminUsersActions.loadAdminUsersSuccess({
               users,
             });

@@ -20,12 +20,15 @@ export const initialState: LocationMapState = {
 
 export const locationMapReducer = createReducer(
   initialState,
-  on(LocationsActions.loadHomepageSuccess, (oldState, { homepage }) => {
+  on(LocationsActions.loadHomepage, (state) => {
+    return { ...state, map: { ...state.map, isShown: false } };
+  }),
+  on(LocationsActions.loadHomepageSuccess, (state, { homepage }) => {
     return {
-      ...oldState,
+      ...state,
       ...homepage,
       map: {
-        ...oldState.map,
+        ...state.map,
         ...homepage.map,
         isShown: true,
       },
