@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { AdminLocationType } from '../models/admin-location-type.interface.dto';
+import { AdminLocationType } from '../models/admin-location-type.dto';
 import * as AdminLocationTypesActions from './admin-location-types.actions';
 
 export interface AdminLocationTypesState

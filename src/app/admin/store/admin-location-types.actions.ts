@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AdminLocationType } from '../models/admin-location-type.interface.dto';
+import { AdminLocationType } from '../models/admin-location-type.dto';
 
 export const loadAdminLocationTypes = createAction(
   '[Admin] Load location types'

@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
-import { AdminLocationType } from '../models/admin-location-type.interface.dto';
+import { AdminLocationType } from '../models/admin-location-type.dto';
 
 export const selectAdminLocationTypesFeature = createSelector(
   (state: AppState) => state.adminLocationTypes,

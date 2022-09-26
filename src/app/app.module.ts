@@ -34,6 +34,8 @@ import { AdminLocationTypesEffects } from './admin/store/admin-location-types.ef
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SettingsEffects } from './admin/store/settings.effects';
 import { settingsReducer } from './admin/store/settings.reducer';
+import { adminUsersReducer } from './admin/store/admin-users.reducer';
+import { AdminUsersEffects } from './admin/store/admin-users.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +48,7 @@ import { settingsReducer } from './admin/store/settings.reducer';
       locationMap: locationMapReducer,
       trendingLocations: trendingLocationsReducer,
       adminLocationTypes: adminLocationTypesReducer,
+      adminUsers: adminUsersReducer,
       settings: settingsReducer,
     }),
     StoreDevtoolsModule.instrument({
@@ -56,6 +59,7 @@ import { settingsReducer } from './admin/store/settings.reducer';
       AuthEffects,
       LocationEffects,
       AdminLocationTypesEffects,
+      AdminUsersEffects,
       SettingsEffects,
     ]),
     StoreRouterConnectingModule.forRoot(),

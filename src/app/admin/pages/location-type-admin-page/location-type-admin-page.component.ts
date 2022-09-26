@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/app.state';
-import { AdminLocationType } from '../../models/admin-location-type.interface.dto';
+import { AdminLocationType } from '../../models/admin-location-type.dto';
 import { Store } from '@ngrx/store';
 import { loadAdminLocationTypes } from '../../store/admin-location-types.actions';
 import { selectAdminLocationTypes } from '../../store/admin-location-types.selectors';

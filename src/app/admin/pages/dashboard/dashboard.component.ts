@@ -15,10 +15,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/users');
   }
 
-  openLocations() {
-    this.router.navigateByUrl('/dashboard/locations');
-  }
-
   openLocationTypes() {
     this.router.navigateByUrl('/dashboard/location-types');
   }

@@ -2,12 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
-import { AdminLocationType } from '../../models/admin-location-type.interface.dto';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { AdminLocationType } from '../../models/admin-location-type.dto';
 
 @Component({
   selector: 'app-location-type-dialog',
@@ -28,7 +23,6 @@ export class LocationTypeDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     if (this.data) {
       this.mode = 'edit';
       this.title = `Edit ${this.data.locationType.name}`;

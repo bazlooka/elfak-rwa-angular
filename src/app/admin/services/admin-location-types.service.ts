@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AdminLocationType } from '../models/admin-location-type.interface.dto';
+import { AdminLocationType } from '../models/admin-location-type.dto';
 
 @Injectable({
   providedIn: 'root',

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Edit roles</h1>
+<div mat-dialog-content class="checkbox-container">
+  <ul *ngFor="let roleSelection of roleSelection">
+    <mat-checkbox
+      [(ngModel)]="roleSelection.checked"
+      [disabled]="roleSelection.disabled"
+      >{{ roleSelection.role }}</mat-checkbox
+    >
+  </ul>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onCancelClicked()">Cancel</button>
+  <button mat-button [mat-dialog-close] cdkFocusInitial (click)="onOkClicked()">
+    Ok
+  </button>
+</div>
