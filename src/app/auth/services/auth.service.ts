@@ -64,4 +64,10 @@ export class AuthService {
   private saveUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
   }
+
+  public deleteAccount() {
+    return this.httpClient.delete<User>(
+      `${environment.apiUrl}/users/my-accont`
+    );
+  }
 }

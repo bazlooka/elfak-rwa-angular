@@ -1,5 +1,17 @@
 .profile-page {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  justify-content: center;
+  margin-top: 20vh;
+  mat-icon {
+    font-size: 100px;
+    height: 100px;
+    width: 100px;
+  }
+}
+.profile-details {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
 }

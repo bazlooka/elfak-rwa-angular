@@ -23,4 +23,8 @@ export class ProfilePageComponent implements OnInit {
   logout(): void {
     this.store.dispatch(AuthActions.logout());
   }
+
+  deleteAccount(): void {
+    this.store.dispatch(AuthActions.deleteAccount());
+  }
 }

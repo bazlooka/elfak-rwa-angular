@@ -20,3 +20,5 @@ export const register = createAction(
   '[Auth] Register',
   props<{ newUser: RegisterUserDto }>()
 );
+
+export const deleteAccount = createAction('[Auth] Delete account');

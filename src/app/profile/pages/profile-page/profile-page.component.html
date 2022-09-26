@@ -1,10 +1,17 @@
 <div *ngIf="user$ | async as user">
   <div class="profile-page">
     <div class="profile-details">
+      <div>
+        <mat-icon>person</mat-icon>
+      </div>
       <h1>{{ user.firstName }} {{ user.lastName }}</h1>
       <h2>{{ user.username }}</h2>
       <button mat-raised-button color="primary" (click)="logout()">
         Sign out
+      </button>
+      <p></p>
+      <button mat-button color="warn" (click)="deleteAccount()">
+        Delete account
       </button>
     </div>
   </div>

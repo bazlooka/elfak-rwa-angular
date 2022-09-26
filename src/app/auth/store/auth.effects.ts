@@ -40,5 +40,17 @@ export class AuthEffects {
     );
   });
 
+  deleteAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.deleteAccount),
+      mergeMap(() => {
+        return this.authService.deleteAccount().pipe(
+          map(() => AuthActions.logout()),
+          catchError(() => of({ type: 'delete account error' }))
+        );
+      })
+    );
+  });
+
   constructor(private actions$: Actions, private authService: AuthService) {}
 }
