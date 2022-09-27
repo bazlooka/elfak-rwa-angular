@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
-import { TrendingLocation } from '../models/trending-location.interface';
+import { TrendingLocationDto } from '../models/trending-location.dto';
 
 export const selectTrendingLocationsFeature = createSelector(
   (state: AppState) => state.trendingLocations,
@@ -13,5 +13,5 @@ export const selectTrendingLocations = createSelector(
     locations.ids
       .map((id) => locations.entities[id])
       .filter((location) => location != null)
-      .map((location) => <TrendingLocation>location)
+      .map((location) => <TrendingLocationDto>location)
 );

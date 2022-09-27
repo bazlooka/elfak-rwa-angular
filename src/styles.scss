@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$color-negative-rating: rgb(233, 193, 60) !default;
+$color-ok-rating: rgb(233, 193, 60) !default;
+$color-positive-rating: rgb(233, 193, 60) !default;
+$color-default-rating: rgb(233, 193, 60) !default;
+
+@import "~css-star-rating/scss/star-rating";

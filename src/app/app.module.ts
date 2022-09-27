@@ -36,6 +36,8 @@ import { SettingsEffects } from './admin/store/settings.effects';
 import { settingsReducer } from './admin/store/settings.reducer';
 import { adminUsersReducer } from './admin/store/admin-users.reducer';
 import { AdminUsersEffects } from './admin/store/admin-users.effects';
+import { StarRatingModule } from 'angular-star-rating';
+import { locationPageReducer } from './locations/store/locations.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +49,7 @@ import { AdminUsersEffects } from './admin/store/admin-users.effects';
       auth: authReducer,
       locationMap: locationMapReducer,
       trendingLocations: trendingLocationsReducer,
+      locationPage: locationPageReducer,
       adminLocationTypes: adminLocationTypesReducer,
       adminUsers: adminUsersReducer,
       settings: settingsReducer,
@@ -69,6 +72,7 @@ import { AdminUsersEffects } from './admin/store/admin-users.effects';
     LocationsModule,
     AuthModule,
     ProfileModule,
+    StarRatingModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

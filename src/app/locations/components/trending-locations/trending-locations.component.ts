@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
-import { TrendingLocation } from '../../models/trending-location.interface';
+import { TrendingLocationDto } from '../../models/trending-location.dto';
 import { selectTrendingLocations } from '../../store/trending-locations.selectors';
 
 @Component({
@@ -12,7 +12,7 @@ import { selectTrendingLocations } from '../../store/trending-locations.selector
   styleUrls: ['./trending-locations.component.scss'],
 })
 export class TrendingLocationsComponent implements OnInit {
-  trendingLocations$: Observable<TrendingLocation[]> | null = null;
+  trendingLocations$: Observable<TrendingLocationDto[]> | null = null;
 
   constructor(private readonly store: Store<AppState>) {}
 

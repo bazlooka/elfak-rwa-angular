@@ -3,6 +3,7 @@ import { AdminUsersState } from './admin/store/admin-users.reducer';
 import { SettingsState } from './admin/store/settings.reducer';
 import { AuthState } from './auth/store/auth.reducer';
 import { LocationMapState } from './locations/store/location-map.reducer';
+import { LocationPageState } from './locations/store/locations.reducer';
 import { TrendingLocationsState } from './locations/store/trending-locations.reducer';
 
 export interface AppState {
@@ -12,4 +13,5 @@ export interface AppState {
   adminLocationTypes: AdminLocationTypesState;
   adminUsers: AdminUsersState;
   settings: SettingsState;
+  locationPage: LocationPageState;
 }

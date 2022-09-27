@@ -25,6 +25,7 @@
     "@ngrx/entity": "^14.3.0",
     "@ngrx/router-store": "^14.3.0",
     "@ngrx/store-devtools": "^14.3.0",
+    "angular-star-rating": "^6.0.0",
     "leaflet": "^1.8.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

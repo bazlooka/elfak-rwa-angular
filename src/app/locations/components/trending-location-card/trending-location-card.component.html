@@ -26,9 +26,48 @@
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-button color="primary">Review</button>
+    <button
+      mat-button
+      color="primary"
+      [disabled]="!(user$ | async)"
+      (click)="toggleReview()"
+    >
+      {{ reviewOpen ? "Close" : "Review" }}
+    </button>
     <button mat-raised-button color="primary" (click)="openLocationDetails()">
       More details
     </button>
   </mat-card-actions>
+</mat-card>
+<mat-card *ngIf="reviewOpen && comment" class="location-card mat-elevation-z3">
+  <mat-card-subtitle> My review </mat-card-subtitle>
+  <div class="review">
+    <mat-form-field appearance="fill" class="comment">
+      <mat-label for="comment">Comment</mat-label>
+      <textarea
+        matInput
+        type="text"
+        matInput
+        required
+        rows="5"
+        [formControl]="comment"
+      ></textarea>
+    </mat-form-field>
+    <div class="save-and-rating">
+      <star-rating
+        [starType]="'svg'"
+        [rating]="location?.myGrade?.rating ?? 0"
+        [step]="1"
+        (ratingChange)="onRatingChange($event)"
+      ></star-rating>
+      <button
+        mat-raised-button
+        color="primary"
+        class="save-button"
+        (click)="rateLocation()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
 </mat-card>

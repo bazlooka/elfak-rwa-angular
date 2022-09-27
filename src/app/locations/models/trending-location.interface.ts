@@ -1,10 +1,3 @@
-export interface TrendingLocation {
-  id: number;
-  name: string;
-  description: string;
-  imagePath: string | null;
-  gradecount: number;
-  averageGrade: Number;
-  publicationTime: Date;
-  typeName: string;
-}
+import { TrendingLocationDto } from './trending-location.dto';
+
+export interface TrendingLocation extends TrendingLocationDto {}

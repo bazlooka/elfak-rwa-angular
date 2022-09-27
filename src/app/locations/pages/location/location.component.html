@@ -1,1 +1,67 @@
-<p>location works!</p>
+<div *ngIf="location$ | async as location" class="location-page">
+  <h1>{{ location.name }}</h1>
+  <h3>{{ location.type.name }}</h3>
+  <p>{{ location.description }}</p>
+  <p>{{ location.address }}</p>
+  <a href="{{ location.website }}" target="_blank">{{ location.website }}</a>
+  <h1>Gallery:</h1>
+  <div class="gallery">
+    <div *ngFor="let imgPath of location.imagePaths">
+      <img
+        src="{{ getImageUrl(imgPath) }}"
+        alt="{{ location.name }}"
+        width="400px"
+      />
+    </div>
+  </div>
+  <h1>Reviews:</h1>
+  <mat-card *ngIf="comment && userId" class="location-card mat-elevation-z3">
+    <mat-card-subtitle> My review </mat-card-subtitle>
+    <div class="review">
+      <mat-form-field appearance="fill" class="comment">
+        <mat-label for="comment">Comment</mat-label>
+        <textarea
+          matInput
+          type="text"
+          matInput
+          required
+          rows="5"
+          [formControl]="comment"
+        ></textarea>
+      </mat-form-field>
+      <div class="save-and-rating">
+        <star-rating
+          [starType]="'svg'"
+          [rating]="rating"
+          [step]="1"
+          (ratingChange)="onRatingChange($event)"
+        ></star-rating>
+        <button
+          mat-raised-button
+          color="primary"
+          class="save-button"
+          (click)="rateLocation()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card *ngFor="let grade of location.grades" class="mat-elevation-z3">
+    <div class="grade-card">
+      <div class="grade-rating">
+        <star-rating
+          [starType]="'svg'"
+          [rating]="grade.rating"
+          [step]="1"
+          [readOnly]="true"
+        ></star-rating>
+        <div>"{{ grade.comment }}"</div>
+      </div>
+
+      <div>-{{ grade.gradedBy?.firstName }} {{ grade.gradedBy?.lastName }}</div>
+    </div>
+  </mat-card>
+  <div class="placeholder"></div>
+</div>

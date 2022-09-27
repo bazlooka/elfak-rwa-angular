@@ -30,7 +30,36 @@ export class LocationEffects {
             this.router.navigateByUrl('/locations');
             return LocationActions.createNewLocationSuccess({ location });
           }),
+          catchError(() => of({ type: 'location creation error' }))
+        );
+      })
+    );
+  });
+
+  gradeLocation$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LocationActions.gradeLocation),
+      mergeMap(({ grade }) => {
+        return this.locationsService.gradeLocation(grade).pipe(
+          map((grade) => {
+            this.snackbar.open(`Location successfully graded!`);
+            return LocationActions.gradeLocationSuccess({ grade });
+          }),
           catchError(() => of({ type: '' }))
+        );
+      })
+    );
+  });
+
+  loadLocation$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LocationActions.loadLocation),
+      mergeMap(({ locationId }) => {
+        return this.locationsService.loadLocation(locationId).pipe(
+          map((location) => {
+            return LocationActions.loadLocationSuccess({ location });
+          }),
+          catchError(() => of({ type: 'location loading error' }))
         );
       })
     );

@@ -1,3 +1,4 @@
+import { Grade } from './grade.interface';
 import { LocationType } from './location-type.interface';
 
 export interface Location {
@@ -6,10 +7,12 @@ export interface Location {
   description: string;
   imagePaths: string[];
   publicationTime: Date;
+  address: string;
+  website: string;
   latitude: number;
   longitude: number;
   deletedDate: Date;
   type: LocationType;
-  grades: any[];
+  grades: Grade[];
   author: any;
 }
